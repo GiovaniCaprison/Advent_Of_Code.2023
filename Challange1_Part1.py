@@ -1,6 +1,6 @@
 import re
 
-file_path = '/Users/louisgrennell/PycharmProjects/pythonProject/input.txt'
+file_path = '/example/file/path.txt'
 
 # Reading the file
 with open(file_path, 'r') as file:
