@@ -1,7 +1,6 @@
 import re
 from collections import defaultdict
 
-
 total = 0
 board = []
 gear_nums = defaultdict(list)
