@@ -1,13 +1,9 @@
-/// Advent of Code 2023 Day 5.
-/// Both parts of the problem are solved here.
-
 use std::fs::File;
 use std::error::Error;
 use std::io::{BufRead, BufReader};
 use regex::Regex;
 
 fn main() -> Result<(), Box<dyn Error>> {
-    println!("Day 5 Advent of Code");
 
     let input = "/example/file/path.txt";
 
@@ -17,7 +13,6 @@ fn main() -> Result<(), Box<dyn Error>> {
     Ok(())
 }
 
-/// Part 1: Find the lowest location corresponding to each seed.
 fn part_1(path: &str) -> Result<usize, Box<dyn Error>> {
     let (seeds, maps) = parse_maps(path)?;
 
@@ -25,7 +20,6 @@ fn part_1(path: &str) -> Result<usize, Box<dyn Error>> {
 
     for mut key in seeds {
 
-        // Serial map relationships make this easy.
         for map in &maps {
             match map.lookup(key) {
                 Ok(k)  |
@@ -34,11 +28,10 @@ fn part_1(path: &str) -> Result<usize, Box<dyn Error>> {
         }
         location = location.min(key);
     }
-    println!("Part 1 Lowest location number: {}", location);
+    println!("{}", location);
     Ok(0)
 }
 
-/// Part 2: Find the lowest location corresponding to each seed range.
 fn part_2(path: &str) -> Result<(), Box<dyn Error>> {
     let (seeds, maps) = parse_maps(path)?;
 
@@ -47,7 +40,6 @@ fn part_2(path: &str) -> Result<(), Box<dyn Error>> {
     for range in seeds.chunks(2) {
         for mut key in range[0]..range[0] + range[1] {
 
-            // Serial map relationships make this easy.
             for map in &maps {
                 match map.lookup(key) {
                     Ok(k)  |
@@ -57,11 +49,10 @@ fn part_2(path: &str) -> Result<(), Box<dyn Error>> {
             location = location.min(key);
         }
     }
-    println!("Part 2 Lowest location number: {}", location);
+    println!("{}", location);
     Ok(())
 }
 
-/// A map from one seed related topic to another.
 #[derive(Debug)]
 struct Map {
     _from   : String,
@@ -69,7 +60,6 @@ struct Map {
     entries : Vec<MapEntry>,
 }
 impl Map {
-    /// Lookup the destination corresponding to the given source.
     fn lookup(&self, src: usize) -> Result<usize, usize> {
         let start = self.entries
             .binary_search_by_key(&src, |e| e.src_start)
@@ -86,8 +76,6 @@ impl Map {
     }
 }
 
-/// A map entry that defines a range of source values and the corresponding
-/// start position of the destination.
 #[derive(Debug)]
 struct MapEntry {
     dst_start : usize,
@@ -95,14 +83,12 @@ struct MapEntry {
     range_len : usize,
 }
 
-/// The state of the parser. Used by `parse_maps()`.
 enum ParserState {
     Seeds,
     MapTitle,
     MapEntries,
 }
 
-/// Parse the input file into a vector of seeds and a vector of maps.
 fn parse_maps(path: &str) -> Result<(Vec<usize>, Vec<Map>), Box<dyn Error>> {
     use ParserState::*;
     let file    = File::open(path)?;
