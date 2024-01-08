@@ -1,6 +1,13 @@
 # Advent_Of_Code.2023
-<img width="545" alt="Screenshot 2023-12-09 at 14 09 13" src="https://github.com/GiovaniCaprison/Advent_Of_Code.2023/assets/96631156/1be58df6-0e46-4b20-a6c9-2656db093b63">
 
+### Day25
+![image](https://github.com/GiovaniCaprison/Advent_Of_Code.2023/assets/96631156/e212f3c2-f9c5-4a96-a550-fec9dbc875fe)
+
+### Day23
+![image](https://github.com/GiovaniCaprison/Advent_Of_Code.2023/assets/96631156/e0715347-f7c9-4443-a490-5533c8e6ecc0)
+
+### Day9
+![image](https://github.com/GiovaniCaprison/Advent_Of_Code.2023/assets/96631156/0453cc36-51bd-453f-8b3b-485b2e92743d)
 
 All of my advent of code solutions I have made this year (2023)
 
